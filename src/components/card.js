@@ -1,8 +1,3 @@
-import { openPopupImage, openModal } from "./modal.js";
-const ImagePopup = document.querySelector(".popup_type_image");
-const popupNewCard = document.querySelector(".popup_type_new-card");
-const placesList = document.querySelector(".places__list");
-
 //Функция создания карточки
 function createCard(cardData, deleteCard, openPopupImage, likeCard) {
   const cardTemplate = document.querySelector("#card-template").content; //Темплейт карточки
@@ -10,6 +5,7 @@ function createCard(cardData, deleteCard, openPopupImage, likeCard) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const deleteButton = cardElement.querySelector(".card__delete-button");
+  const likeButton = cardElement.querySelector(".card__like-button");
 
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
@@ -21,10 +17,9 @@ function createCard(cardData, deleteCard, openPopupImage, likeCard) {
   //Открытие попапа картинки
   cardImage.addEventListener("click", function () {
     openPopupImage(cardData);
-    openModal(ImagePopup);
   });
 
-  likeCard(cardElement);
+  likeButton.addEventListener("click", () => likeCard(likeButton));
 
   return cardElement;
 }
@@ -35,30 +30,8 @@ function deleteCard(item) {
 }
 
 //Функция постановки лайка
-function likeCard(item) {
-  item.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("card__like-button")) {
-      evt.target.classList.toggle("card__like-button_is-active");
-    }
-  });
+function likeCard(button) {
+  button.classList.toggle("card__like-button_is-active");
 }
 
-//Добавление карточки
-function createNewCard(evt) {
-  const formAdd = popupNewCard.querySelector(".popup__form");
-  const popupLink = popupNewCard.querySelector(".popup__input_type_url");
-  const popupName = popupNewCard.querySelector(".popup__input_type_card-name");
-  evt.preventDefault();
-
-  const newCardData = {
-    name: popupName.value,
-    link: popupLink.value,
-  };
-  placesList.prepend(
-    createCard(newCardData, deleteCard, openPopupImage, likeCard)
-  );
-
-  formAdd.reset();
-}
-
-export { createCard, deleteCard, likeCard, createNewCard };
+export { createCard, deleteCard, likeCard };
