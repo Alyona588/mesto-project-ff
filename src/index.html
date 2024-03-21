@@ -12,7 +12,7 @@
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src= <%=require("./images/logo.svg")%> alt="Логотип проекта масто"
+        <img src= <%=require("./images/logo.svg")%> alt="Логотип проекта место"
         class="logo header__logo" />
       </header>
       <main class="content">
@@ -43,17 +43,29 @@
             <input
               type="text"
               name="name"
+              id="name-input"
               class="popup__input popup__input_type_name"
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+              data-error-message="Поле может содержать латинские и кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="popup__input-error name-input-error"></span>
             <input
               type="text"
               name="description"
+              id="description-input"
               class="popup__input popup__input_type_description"
               placeholder="Занятие"
+              minlength="2"
+              maxlength="200"
+              pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+              data-error-message="Поле может содержать латинские и кириллические буквы, знаки дефиса и пробелы."
               required
             />
+            <span class="popup__input-error description-input-error"></span>
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
@@ -68,17 +80,45 @@
             <input
               type="text"
               name="place-name"
+              id="place-input"
               class="popup__input popup__input_type_card-name"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+              data-error-message="Поле может содержать латинские и кириллические буквы, знаки дефиса и пробелы."
               required
             />
+            <span class="popup__input-error place-input-error"></span>
             <input
               type="url"
               name="link"
+              id="url-input"
               class="popup__input popup__input_type_url"
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="popup__input-error url-input-error"></span>
+            <button type="submit" class="button popup__button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_type_new-avatar">
+        <div class="popup__content popup-avatar__content">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form class="popup__form" name="new-avatar">
+            <input
+              type="url"
+              name="link"
+              id="url-input"
+              class="popup__input popup__input_type_url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__input-error url-input-error"></span>
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
@@ -100,7 +140,10 @@
         <button type="button" class="card__delete-button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__like-button"></button>
+          <div class="like_container">
+            <button type="button" class="card__like-button"></button>
+            <span class="likes_counter"></span>
+          </div>
         </div>
       </li>
     </template>

@@ -20,3 +20,18 @@
     margin-right: 0;
   }
 }
+
+.profile__image:hover {
+  opacity: 0.4;
+  position: relative;
+}
+
+.profile__image:hover::after {
+  position: absolute;
+  content: url(/src/images/pencil.svg);
+  block-size: 26px;
+  inline-size: 26px;
+  top: 45px;
+  left: 50px;
+  opacity: 1;
+}
