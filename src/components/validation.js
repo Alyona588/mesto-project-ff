@@ -58,7 +58,7 @@ const hasInvalidInput = (inputList) => {
 //Функция переключения активности кнопки, если хотя бы один инпут невалиден
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
-    inactiveSubmitButton(buttonElement, validationConfig);
+    disableButton(buttonElement, validationConfig);
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(validationConfig.inactiveButtonClass);
@@ -66,7 +66,7 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
 };
 
 //Функция переключения кнопки на неактивную
-const inactiveSubmitButton = (buttonElement, validationConfig) => {
+const disableButton = (buttonElement, validationConfig) => {
   buttonElement.disabled = true;
   buttonElement.classList.add(validationConfig.inactiveButtonClass);
 };
@@ -100,7 +100,7 @@ const clearValidation = (formElement, validationConfig) => {
     inputElement.value = "";
     hideInputError(formElement, inputElement, validationConfig);
   });
-  inactiveSubmitButton(submitButton, validationConfig);
+  disableButton(submitButton, validationConfig);
 };
 
 //Функция валидации всех форм

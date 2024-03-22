@@ -29,7 +29,7 @@ function keyHandler(evt) {
 }
 
 //Плавное открытие и закрытие попапов
-function popupAnimated(popupType) {
+function setPopupAnimated(popupType) {
   popupType.classList.add("popup_is-animated");
 }
 
@@ -38,5 +38,5 @@ export {
   closeModal,
   setModalWindowListeners,
   keyHandler,
-  popupAnimated,
+  setPopupAnimated,
 };

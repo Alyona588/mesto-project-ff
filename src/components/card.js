@@ -36,7 +36,6 @@ function createCard(
   });
   //Проверка, чья карточка и удаление иконки корзинки
   if (ownerId !== userId) {
-    deleteButton.removeEventListener("click", () => deleteCard(cardElement));
     deleteButton.remove();
   }
   //Отображение количества лайков в зависимости от того, есть ли на карточке мой лайк
@@ -52,18 +51,14 @@ function createCard(
             likeCard(likeButton);
             likesCounter.textContent = res.likes.length;
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch(console.error);
       } else {
         removeLike(cardData._id)
           .then((res) => {
             likeCard(likeButton);
             likesCounter.textContent = res.likes.length;
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch(console.error);
       }
     }
   };
@@ -74,9 +69,7 @@ function createCard(
     }
   });
 
-  likeButton.addEventListener("click", () => {
-    likeImage();
-  });
+  likeButton.addEventListener("click", likeImage);
 
   return cardElement;
 }
@@ -87,9 +80,7 @@ function deleteCard(item, idCard, deleteMyCard) {
     .then(() => {
       item.remove();
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(console.error);
 }
 
 //Функция постановки лайка

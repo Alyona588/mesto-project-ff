@@ -19,9 +19,7 @@ function checkResponse(res) {
 function getInformation() {
   return fetch(`${auth.baseUrl}/users/me`, {
     method: "Get",
-    headers: {
-      authorization: "3ce5af04-c6ad-4a37-8ea8-66b06e336b2d",
-    },
+    headers: auth.headers,
   }).then(checkResponse);
 }
 
@@ -33,7 +31,7 @@ function loadCards() {
   }).then(checkResponse);
 }
 
-//Функция редактирования профиля 
+//Функция редактирования профиля
 function editProfile(name, job) {
   return fetch(`${auth.baseUrl}/users/me`, {
     method: "PATCH",
@@ -57,7 +55,7 @@ function addNewCard(name, link) {
   }).then(checkResponse);
 }
 
-//Функция удаления своей карточки 
+//Функция удаления своей карточки
 function deleteMyCard(idCard) {
   return fetch(`${auth.baseUrl}/cards/${idCard}`, {
     method: "DELETE",
